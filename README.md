@@ -877,15 +877,3 @@ services:
         tmpfs:
           size: 2G
 ```
-
-## 🤝 Contribuir
-
-1. Fork el repositorio
-2. Crea una rama feature
-3. Commit tus cambios
-4. Push a la rama
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-MIT License - ver archivo LICENSE para detalles. 
