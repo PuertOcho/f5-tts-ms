@@ -1,0 +1,23 @@
+flask
+# PyTorch y audio (compatibles con contenedor)
+torch==2.1.0
+torchaudio==2.1.0
+# Spanish-F5 oficial del repositorio específico
+git+https://github.com/jpgallegoar/Spanish-F5.git
+# Dependencias principales para audio
+numpy
+scipy
+librosa
+soundfile
+# Dependencias específicas para F5-TTS español
+transformers
+datasets
+accelerate
+safetensors
+huggingface_hub
+# Dependencias de procesamiento
+einops
+rotary_embedding_torch
+# Utilidades
+requests
+python-dotenv 

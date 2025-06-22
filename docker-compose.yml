@@ -1,0 +1,37 @@
+services:
+  f5-tts:
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - "${HOST_PORT}:${CONTAINER_PORT}"
+    environment:
+      - FLASK_HOST=${FLASK_HOST}
+      - FLASK_PORT=${FLASK_PORT}
+      - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE}
+      - DEFAULT_VOICE=${DEFAULT_VOICE}
+      - DEBUG_AUDIO=${DEBUG_AUDIO}
+      - F5_MODEL=${F5_MODEL}
+    volumes:
+      - ./debug_audio:/app/debug_audio
+      - f5_models:/app/models
+      - ./references:/app/references
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${CONTAINER_PORT}/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  f5_models:
+    driver: local 
